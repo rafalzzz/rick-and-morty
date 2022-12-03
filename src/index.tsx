@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "styled-components";
 import { store } from "./store";
 import reportWebVitals from "./reportWebVitals";
-import { RickAndMortyCharacters } from "features/rick-and-morty-characters";
+import { Routes } from "./routes";
 import { GlobalStyle } from "styles/global-styles";
 import { basic } from "styles/themes/basic";
 
@@ -16,7 +16,7 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={basic}>
         <GlobalStyle />
-        <RickAndMortyCharacters />
+        <Routes />
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

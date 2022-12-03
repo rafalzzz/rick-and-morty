@@ -1,22 +1,30 @@
 import { ChangeEvent } from "react";
-import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
+import { useSearchParams } from "react-router-dom";
+import { useDropdownSelectValue } from "features/rick-and-morty-characters/hooks/use-dropdown-select-value";
 import { capitalizeFirstLetter } from "features/rick-and-morty-characters/helpers/capitalize-first-letter";
-import { setSpecies, tableState } from "store/table";
-import { Species } from "features/rick-and-morty-characters/enums/species";
+import { Species, QueryParamKeys } from "features/rick-and-morty-characters/enums";
 import { Select } from "./index.styled";
 
 const OPTIONS = Object.values(Species);
 
 export const DropdownSelect = () => {
-  const dispatch = useAppDispatch();
-  const { species } = useAppSelector(tableState);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const value = useDropdownSelectValue();
 
   const onChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setSpecies(value as Species));
+    if (!value) {
+      searchParams.delete(QueryParamKeys.SPECIES);
+    }
+
+    if (value) {
+      searchParams.set(QueryParamKeys.SPECIES, value);
+    }
+
+    setSearchParams(searchParams);
   };
 
   return (
-    <Select className="shadow-none" value={species} onChange={onChange}>
+    <Select className="shadow-none" value={value} onChange={onChange}>
       {OPTIONS.map((option) => {
         const label = option ? capitalizeFirstLetter(option) : "Species";
         return <option value={option}>{label}</option>;

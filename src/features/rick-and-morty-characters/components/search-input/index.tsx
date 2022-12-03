@@ -1,26 +1,40 @@
-import React, { useRef, FormEvent } from "react";
-import { useAppDispatch } from "hooks/redux-hooks";
-import { setName } from "store/table";
-
+import { useState, useRef, FormEvent, ChangeEvent } from "react";
+import { useSearchParams } from "react-router-dom";
+import { QueryParamKeys } from "features/rick-and-morty-characters/enums";
 import { ReactComponent as Loupe } from "assets/svg/loupe.svg";
 import * as Styled from "./index.styled";
 
-export const SearchInput = () => {
-  const dispatch = useAppDispatch();
-  const inputRef = useRef<HTMLInputElement | null>(null);
+export const Search = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [inputValue, setInputValue] = useState(searchParams.get(QueryParamKeys.NAME));
+  const ref = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
 
-    if (inputRef.current?.value) {
-      dispatch(setName(inputRef.current.value));
-      inputRef.current.blur();
+    if (!inputValue && searchParams.has(QueryParamKeys.NAME)) {
+      searchParams.delete(QueryParamKeys.NAME);
     }
+
+    if (inputValue) {
+      searchParams.set(String(QueryParamKeys.NAME), inputValue);
+      setSearchParams(searchParams);
+      ref.current?.blur();
+    }
+
+    setSearchParams(searchParams);
   };
 
   return (
     <Styled.SearchForm onSubmit={onSubmit}>
-      <Styled.Input ref={inputRef} type="text" className="shadow-none" placeholder="Search" />
+      <Styled.Input
+        ref={ref}
+        onChange={({ target: { value } }: ChangeEvent<HTMLInputElement>) => setInputValue(value)}
+        value={inputValue}
+        type="text"
+        className="shadow-none"
+        placeholder="Search"
+      />
       <Styled.SubmitButton type="submit">
         <Loupe />
       </Styled.SubmitButton>
