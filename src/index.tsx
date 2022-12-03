@@ -1,10 +1,12 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";
+import { ThemeProvider } from "styled-components";
 import { store } from "./store";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { RickAndMortyCharacters } from "features/rick-and-morty-characters";
 import { GlobalStyle } from "styles/global-styles";
+import { basic } from "styles/themes/basic";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -12,8 +14,10 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <GlobalStyle />
-      <App />
+      <ThemeProvider theme={basic}>
+        <GlobalStyle />
+        <RickAndMortyCharacters />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );

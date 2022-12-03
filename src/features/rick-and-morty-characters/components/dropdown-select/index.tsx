@@ -1,8 +1,8 @@
 import { ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
-import { capitalizeFirstLetter } from "features/table/helpers/capitalize-first-letter";
+import { capitalizeFirstLetter } from "features/rick-and-morty-characters/helpers/capitalize-first-letter";
 import { setSpecies, tableState } from "store/table";
-import { Species } from "features/table/enums/species";
+import { Species } from "features/rick-and-morty-characters/enums/species";
 import { Select } from "./index.styled";
 
 const OPTIONS = Object.values(Species);

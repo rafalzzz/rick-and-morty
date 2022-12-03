@@ -3,14 +3,14 @@ import { Form } from "react-bootstrap";
 
 export const Select = styled(Form.Select)`
   width: 140px;
-  border: 1px solid #bac6d8;
+  border: ${(props) => props.theme.border.basic};
   border-radius: 5px;
   padding: 9px 11px;
   font-size: 0.9rem;
   font-weight: 400;
-  color: #484f53;
+  color: ${(props) => props.theme.fontColors.inputValue};
 
   :focus {
-    border: 1px solid #bac6d8;
+    border: ${(props) => props.theme.border.basic};
   }
 `;

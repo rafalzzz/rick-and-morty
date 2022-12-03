@@ -6,7 +6,7 @@ import { FiltersSection } from "./components/filters-section";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export const Table = () => {
+export const RickAndMortyCharacters = () => {
   return (
     <ContentWrapper>
       <>

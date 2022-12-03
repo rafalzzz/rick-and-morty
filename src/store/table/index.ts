@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { persistReducer, PURGE } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import type { RootState } from "store";
-import { Species } from "features/table/enums/species";
+import { Species } from "features/rick-and-morty-characters/enums/species";
 
 interface TableState {
   page: number;

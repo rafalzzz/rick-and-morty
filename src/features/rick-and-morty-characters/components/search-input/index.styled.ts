@@ -6,7 +6,7 @@ export const SearchForm = styled(Form)`
   padding: 0;
   margin: 0;
   width: 140px;
-  border: 1px solid #bac6d8;
+  border: ${(props) => props.theme.border.basic};
   border-radius: 5px;
 `;
 
@@ -15,12 +15,16 @@ export const Input = styled(Form.Control)`
   font-size: 0.9rem;
   font-weight: 400;
   border: none;
-  color: #484f53;
+  color: ${(props) => props.theme.fontColors.inputValue};
 
   ::placeholder,
   :-ms-input-placeholder,
   ::-ms-input-placeholder {
-    color: #8c9193;
+    color: ${(props) => props.theme.fontColors.placeholder};
+  }
+
+  :focus {
+    color: ${(props) => props.theme.fontColors.inputValue};
   }
 `;
 
@@ -32,6 +36,6 @@ export const SubmitButton = styled(Button)`
   background-color: transparent;
 
   :hover {
-    background-color: #8c919310;
+    background-color: ${(props) => props.theme.colors.hoverBackgroundColor};
   }
 `;
