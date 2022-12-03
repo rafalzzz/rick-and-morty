@@ -6,14 +6,14 @@ import { QueryParams } from "../types";
 const OPTIONS = Object.values(Species);
 
 type UseQueryParamsState = {
-  updateQueryParam: (key: QueryParamKeys, value: string) => void;
+  updateSingleQueryParam: (key: QueryParamKeys, value: string) => void;
   queryParams: QueryParams;
 };
 
 export const useQueryParams = (): UseQueryParamsState => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const updateQueryParam = useCallback(
+  const updateSingleQueryParam = useCallback(
     (key: QueryParamKeys, value: string) => {
       if (!value && searchParams.has(key)) {
         searchParams.delete(key);
@@ -35,12 +35,14 @@ export const useQueryParams = (): UseQueryParamsState => {
 
   const name = getSingleQueryParam(QueryParamKeys.NAME);
   const species = OPTIONS.includes(speciesValue as Species) ? speciesValue : "";
-  const page = isNaN(Number(pageValue)) ? "1" : pageValue;
+  const page = !pageValue || isNaN(Number(pageValue)) ? "1" : pageValue;
 
   const queryParams = useMemo(() => ({ name, species, page }), [name, page, species]);
 
+  console.log({ queryParams });
+
   return {
-    updateQueryParam,
+    updateSingleQueryParam,
     queryParams,
   };
 };

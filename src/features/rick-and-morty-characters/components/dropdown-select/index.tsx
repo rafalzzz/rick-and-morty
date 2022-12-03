@@ -7,10 +7,10 @@ import { Select } from "./index.styled";
 const OPTIONS = Object.values(Species);
 
 export const DropdownSelect = () => {
-  const { queryParams, updateQueryParam } = useQueryParams();
+  const { queryParams, updateSingleQueryParam } = useQueryParams();
 
   const onChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
-    updateQueryParam(QueryParamKeys.SPECIES, value);
+    updateSingleQueryParam(QueryParamKeys.SPECIES, value);
   };
 
   return (
