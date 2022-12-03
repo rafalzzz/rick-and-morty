@@ -1,28 +1,18 @@
 import { useState, useRef, FormEvent, ChangeEvent } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useQueryParams } from "features/rick-and-morty-characters/hooks/use-query-params";
 import { QueryParamKeys } from "features/rick-and-morty-characters/enums";
 import { ReactComponent as Loupe } from "assets/svg/loupe.svg";
 import * as Styled from "./index.styled";
 
 export const Search = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [inputValue, setInputValue] = useState(searchParams.get(QueryParamKeys.NAME));
+  const { queryParams, updateQueryParam } = useQueryParams();
+  const [inputValue, setInputValue] = useState(queryParams[QueryParamKeys.NAME]);
   const ref = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-
-    if (!inputValue && searchParams.has(QueryParamKeys.NAME)) {
-      searchParams.delete(QueryParamKeys.NAME);
-    }
-
-    if (inputValue) {
-      searchParams.set(String(QueryParamKeys.NAME), inputValue);
-      setSearchParams(searchParams);
-      ref.current?.blur();
-    }
-
-    setSearchParams(searchParams);
+    updateQueryParam(QueryParamKeys.NAME, inputValue ?? "");
+    ref.current?.blur();
   };
 
   return (

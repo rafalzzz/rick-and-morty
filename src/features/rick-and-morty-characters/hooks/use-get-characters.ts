@@ -1,7 +1,11 @@
 import { useGetCharactersQuery } from "features/rick-and-morty-characters/api";
+import { useUpdateQueryParams } from "./use-check-query-params";
+import { useQueryParams } from "./use-query-params";
 
 export const useGetCharacters = (): any[] => {
-  const { data } = useGetCharactersQuery({ page: 1, name: "", species: "" });
+  const { queryParams } = useQueryParams();
+  const { data } = useGetCharactersQuery(queryParams);
+  useUpdateQueryParams({ correctQueryParams: queryParams });
 
   return data;
 };

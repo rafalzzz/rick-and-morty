@@ -3,7 +3,5 @@ import { useGetCharacters } from "features/rick-and-morty-characters/hooks/use-g
 export const Table = () => {
   const characters = useGetCharacters();
 
-  console.log({ characters });
-
   return <table></table>;
 };

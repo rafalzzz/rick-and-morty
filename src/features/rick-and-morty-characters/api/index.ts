@@ -1,16 +1,15 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
-import queryString from "query-string";
 import { baseQuery } from "./base-query";
+import { stringifyQueryParams } from "../helpers/stringify-query-params";
+import { QueryParams } from "../types";
 
 export const rickAndMortyApi = createApi({
   reducerPath: "rick-and-morty",
   baseQuery,
   endpoints: (builder) => ({
-    getCharacters: builder.query<any, { page: number; name: string; species: string }>({
+    getCharacters: builder.query<any, QueryParams>({
       query: (args) => {
-        const queryParams = queryString.stringify(args, {
-          skipEmptyString: true,
-        });
+        const queryParams = stringifyQueryParams(args);
 
         return {
           url: `/character/?${queryParams}`,

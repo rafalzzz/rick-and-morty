@@ -1,6 +1,7 @@
 export enum QueryParamKeys {
   NAME = "name",
   SPECIES = "species",
+  PAGE = "page",
 }
 
 export enum Species {
