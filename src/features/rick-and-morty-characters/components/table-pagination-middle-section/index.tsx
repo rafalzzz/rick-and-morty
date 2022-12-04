@@ -18,39 +18,45 @@ export const TablePaginationMiddleSection = ({
     let keys = [];
 
     switch (currentPage) {
-      case 3:
+      case 2:
         keys = [4];
         break;
-      case 4:
+      case 3:
         keys = [4, 5];
         break;
-      case 5:
+      case 4:
         keys = [4, 5, 6];
         break;
-      case lastPage - 2:
+      case 5:
+        keys = [4, 5, 6, 7];
+        break;
+      case lastPage - 1:
         keys = [lastPage - 3];
         break;
-      case lastPage - 3:
-        keys = [lastPage - 4, lastPage - 3];
+      case lastPage - 2:
+        keys = [lastPage - 3, lastPage - 4];
         break;
-      case lastPage - 4:
+      case lastPage - 3:
         keys = [lastPage - 5, lastPage - 4, lastPage - 3];
         break;
+      case lastPage - 4:
+        keys = [lastPage - 6, lastPage - 5, lastPage - 4, lastPage - 3];
+        break;
       default:
-        keys = [currentPage - 1, currentPage, currentPage + 1];
+        keys = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
         break;
     }
 
     return keys;
   }, [currentPage, lastPage]);
 
-  if (currentPage < 3 || currentPage > lastPage - 2) {
+  if (currentPage < 2 || currentPage > lastPage - 1) {
     return <TablePaginationEllipsis />;
   }
 
   return (
     <>
-      {currentPage > 5 && <TablePaginationEllipsis />}
+      {currentPage > 6 && <TablePaginationEllipsis />}
       {middleButtonsKeys.map((key) => (
         <TablePaginationItem
           key={key}
@@ -60,7 +66,7 @@ export const TablePaginationMiddleSection = ({
           <>{key}</>
         </TablePaginationItem>
       ))}
-      {currentPage < lastPage - 4 && <TablePaginationEllipsis />}
+      {currentPage < lastPage - 5 && <TablePaginationEllipsis />}
     </>
   );
 };
