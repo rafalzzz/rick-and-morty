@@ -17,7 +17,11 @@ export const TableRow = ({ character }: TableRowProps) => {
       </td>
       <td>
         <NameContainer>
-          <p>{character.name}</p>
+          <p>
+            <CustomTooltip id={`origin-${character.id}`} tooltipText={character.name}>
+              <span>{character.name}</span>
+            </CustomTooltip>
+          </p>
           <p>{character.species}</p>
         </NameContainer>
       </td>

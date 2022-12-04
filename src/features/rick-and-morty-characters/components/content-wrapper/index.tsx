@@ -1,4 +1,4 @@
-import { Main, Content } from "./index.styled";
+import { Wrapper, Content } from "./index.styled";
 
 type ContentProps = {
   children: JSX.Element;
@@ -6,8 +6,8 @@ type ContentProps = {
 
 export const ContentWrapper = ({ children }: ContentProps) => {
   return (
-    <Main>
+    <Wrapper>
       <Content>{children}</Content>
-    </Main>
+    </Wrapper>
   );
 };

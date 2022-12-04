@@ -8,10 +8,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: block;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  min-width: 1280px;
   height: auto;
   padding: 20px;
   background-color: #F5F8FD;

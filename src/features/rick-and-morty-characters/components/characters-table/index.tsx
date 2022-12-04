@@ -9,7 +9,7 @@ export const CharactersTable = () => {
   const characters = useGetCharacters();
 
   return (
-    <StyledTable hover>
+    <StyledTable hover responsive>
       <thead>
         <tr>
           <th>

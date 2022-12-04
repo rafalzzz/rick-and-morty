@@ -19,7 +19,7 @@ export const StyledTable = styled(Table)`
 
   th,
   td {
-    width: 250px;
+    width: 22%;
     padding: 12px 24px 12px 0;
   }
 
