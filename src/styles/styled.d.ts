@@ -7,9 +7,9 @@ declare module "styled-components" {
     };
 
     fontColors: {
-      basic: string;
+      title: string;
       placeholder: string;
-      inputValue: string;
+      basic: string;
     };
 
     colors: {

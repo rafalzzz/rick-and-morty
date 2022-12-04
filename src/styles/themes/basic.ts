@@ -4,8 +4,8 @@ export const basic = {
   },
 
   fontColors: {
-    basic: "1A2328",
-    inputValue: "#484f53",
+    title: "1A2328",
+    basic: "#484f53",
     placeholder: "#8c9193",
   },
 

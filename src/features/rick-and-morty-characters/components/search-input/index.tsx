@@ -6,12 +6,12 @@ import * as Styled from "./index.styled";
 
 export const Search = () => {
   const { queryParams, updateSingleQueryParam } = useQueryParams();
-  const [inputValue, setInputValue] = useState(queryParams[QueryParamKeys.NAME]);
+  const [basic, setInputValue] = useState(queryParams[QueryParamKeys.NAME]);
   const ref = useRef<HTMLInputElement | null>(null);
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    updateSingleQueryParam(QueryParamKeys.NAME, inputValue ?? "");
+    updateSingleQueryParam(QueryParamKeys.NAME, basic ?? "");
     ref.current?.blur();
   };
 
@@ -20,7 +20,7 @@ export const Search = () => {
       <Styled.Input
         ref={ref}
         onChange={({ target: { value } }: ChangeEvent<HTMLInputElement>) => setInputValue(value)}
-        value={inputValue}
+        value={basic}
         type="text"
         className="shadow-none"
         placeholder="Search"

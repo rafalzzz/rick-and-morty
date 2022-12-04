@@ -9,3 +9,13 @@ export enum Species {
   HUMAN = "human",
   ALIEN = "alien",
 }
+
+export enum Status {
+  ALIVE = "Alive",
+  DEAD = "Dead",
+  UNKNOWN = "unknown",
+}
+
+export enum Tags {
+  CHARACTER = "Character",
+}

@@ -7,11 +7,14 @@ body {
   font-family: "Oswald", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 100vh;
+  min-width: 1280px;
+  height: auto;
+  padding: 20px;
+  background-color: #F5F8FD;
 }
 
 code {

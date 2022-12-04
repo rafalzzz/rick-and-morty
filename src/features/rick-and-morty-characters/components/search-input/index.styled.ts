@@ -15,7 +15,7 @@ export const Input = styled(Form.Control)`
   font-size: 0.9rem;
   font-weight: 400;
   border: none;
-  color: ${(props) => props.theme.fontColors.inputValue};
+  color: ${(props) => props.theme.fontColors.basic};
 
   ::placeholder,
   :-ms-input-placeholder,
@@ -24,7 +24,7 @@ export const Input = styled(Form.Control)`
   }
 
   :focus {
-    color: ${(props) => props.theme.fontColors.inputValue};
+    color: ${(props) => props.theme.fontColors.basic};
   }
 `;
 
@@ -33,7 +33,7 @@ export const SubmitButton = styled(Button)`
   align-items: center;
   justify-content: center;
   border: none;
-  background-color: transparent;
+  background-color: #fff;
 
   :hover {
     background-color: ${(props) => props.theme.colors.hoverBackgroundColor};

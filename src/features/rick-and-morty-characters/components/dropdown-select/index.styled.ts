@@ -8,7 +8,7 @@ export const Select = styled(Form.Select)`
   padding: 9px 11px;
   font-size: 0.9rem;
   font-weight: 400;
-  color: ${(props) => props.theme.fontColors.inputValue};
+  color: ${(props) => props.theme.fontColors.basic};
 
   :focus {
     border: ${(props) => props.theme.border.basic};
