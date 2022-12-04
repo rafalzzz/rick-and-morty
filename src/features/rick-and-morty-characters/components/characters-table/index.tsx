@@ -12,7 +12,7 @@ export const CharactersTable = () => {
   const { characters } = useAppSelector(tableState);
 
   return (
-    <StyledTable hover responsive>
+    <StyledTable hover>
       <thead>
         <tr>
           <th>

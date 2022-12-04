@@ -21,8 +21,8 @@ export const RickAndMortyCharacters = () => {
         <FiltersSection />
         {isLoading && !characters.length && <Notification text="Loading ..." />}
         {isError && <Notification text="Characters not found." />}
-        {characters.length && <CharactersTable />}
-        <TablePagination />
+        {!!characters.length && <CharactersTable />}
+        {!!characters.length && <TablePagination />}
       </>
     </ContentWrapper>
   );

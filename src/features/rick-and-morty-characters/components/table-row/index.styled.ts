@@ -52,5 +52,5 @@ export const TextWrapper = styled.span`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  width: calc(100% - 20px);
+  width: 200px;
 `;

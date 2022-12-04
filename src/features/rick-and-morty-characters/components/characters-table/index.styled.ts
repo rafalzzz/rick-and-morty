@@ -3,9 +3,9 @@ import { Table } from "react-bootstrap";
 
 export const StyledTable = styled(Table)`
   background-color: #fff;
-  -webkit-box-shadow: 0px 2px 4px rgba(176, 194, 205, 0.3);
-  -moz-box-shadow: 0px 2px 4px rgba(176, 194, 205, 0.3);
-  box-shadow: 0px 2px 4px rgba(176, 194, 205, 0.3);
+  -webkit-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
+  box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
 
   th:first-child,
   td:first-child {
