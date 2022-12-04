@@ -8,7 +8,5 @@ export const useGetCharacters = (): TransformedResponse | undefined => {
   const { data } = useGetCharactersQuery(queryParams);
   useUpdateQueryParams({ correctQueryParams: queryParams });
 
-  console.log({ data });
-
   return data;
 };

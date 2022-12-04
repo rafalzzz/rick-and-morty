@@ -1,15 +1,30 @@
+import { useState, useRef } from "react";
 import { Form } from "react-bootstrap";
 import { CustomTooltip } from "../tooltip";
+import { useIsOverflow } from "features/rick-and-morty-characters/hooks/use-is-overflow";
 import { getStatusIcon } from "features/rick-and-morty-characters/helpers/get-status-icon";
 import { Status } from "features/rick-and-morty-characters/enums";
 import { TransformedResult } from "features/rick-and-morty-characters/types";
-import { StyledRow, NameContainer, Image, ImageContainer, CellContent } from "./index.styled";
+import {
+  StyledRow,
+  NameContainer,
+  Image,
+  ImageContainer,
+  CellContent,
+  TextWrapper,
+} from "./index.styled";
 
 type TableRowProps = {
   character: TransformedResult;
 };
 
 export const TableRow = ({ character }: TableRowProps) => {
+  const nameTooltipRef = useRef<HTMLSpanElement | null>(null);
+  const originTooltipRef = useRef<HTMLSpanElement | null>(null);
+
+  const showNameTooltip = useIsOverflow<HTMLSpanElement>(nameTooltipRef);
+  const showOriginTooltip = useIsOverflow<HTMLSpanElement>(originTooltipRef);
+
   return (
     <StyledRow isDead={character.status === Status.DEAD}>
       <td>
@@ -18,8 +33,12 @@ export const TableRow = ({ character }: TableRowProps) => {
       <td>
         <NameContainer>
           <p>
-            <CustomTooltip id={`origin-${character.id}`} tooltipText={character.name}>
-              <span>{character.name}</span>
+            <CustomTooltip
+              id={`origin-${character.id}`}
+              tooltipText={character.name}
+              show={showNameTooltip}
+            >
+              <TextWrapper ref={nameTooltipRef}>{character.name}</TextWrapper>
             </CustomTooltip>
           </p>
           <p>{character.species}</p>
@@ -32,8 +51,12 @@ export const TableRow = ({ character }: TableRowProps) => {
       </td>
       <td>
         <CellContent>
-          <CustomTooltip id={`origin-${character.id}`} tooltipText={character.origin.name}>
-            <span>{character.origin.name}</span>
+          <CustomTooltip
+            id={`origin-${character.id}`}
+            tooltipText={character.origin.name}
+            show={showOriginTooltip}
+          >
+            <TextWrapper ref={originTooltipRef}>{character.origin.name}</TextWrapper>
           </CustomTooltip>
         </CellContent>
       </td>

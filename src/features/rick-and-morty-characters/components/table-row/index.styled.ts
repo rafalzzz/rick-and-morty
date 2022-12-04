@@ -48,3 +48,11 @@ export const CellContent = styled.div`
     margin-left: 10px;
   }
 `;
+
+export const TextWrapper = styled.span`
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: calc(100% - 20px);
+`;

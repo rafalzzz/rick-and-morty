@@ -39,8 +39,6 @@ export const useQueryParams = (): UseQueryParamsState => {
 
   const queryParams = useMemo(() => ({ name, species, page }), [name, page, species]);
 
-  console.log({ queryParams });
-
   return {
     updateSingleQueryParam,
     queryParams,
