@@ -1,3 +1,5 @@
+import { tableState } from "store/table";
+import { useAppSelector } from "hooks/redux-hooks";
 import { useGetCharacters } from "./hooks/use-get-characters";
 import { ContentWrapper } from "./components/content-wrapper";
 import { Header } from "./components/header";
@@ -10,15 +12,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export const RickAndMortyCharacters = () => {
   const { isLoading, isError } = useGetCharacters();
+  const { characters } = useAppSelector(tableState);
 
   return (
     <ContentWrapper>
       <>
         <Header title={"Characters"} />
         <FiltersSection />
-        {isLoading && <Notification text="Loading ..." />}
+        {isLoading && !characters.length && <Notification text="Loading ..." />}
         {isError && <Notification text="Characters not found." />}
-        {!isLoading && !isError && <CharactersTable />}
+        {characters.length && <CharactersTable />}
         <TablePagination />
       </>
     </ContentWrapper>
