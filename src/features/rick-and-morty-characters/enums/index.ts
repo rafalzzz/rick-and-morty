@@ -6,8 +6,8 @@ export enum QueryParamKeys {
 
 export enum Species {
   ALL_SPECIES = "",
-  HUMAN = "human",
   ALIEN = "alien",
+  HUMAN = "human",
 }
 
 export enum Status {

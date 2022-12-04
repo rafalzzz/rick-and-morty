@@ -25,9 +25,7 @@ export const ImageContainer = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 15px;
-  -webkit-box-shadow: -6px 11px 19px -10px rgba(66, 68, 90, 1);
-  -moz-box-shadow: -6px 11px 19px -10px rgba(66, 68, 90, 1);
-  box-shadow: -6px 11px 19px -10px rgba(66, 68, 90, 1);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 `;
 
 export const Image = styled.img`

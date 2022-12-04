@@ -3,7 +3,7 @@ import { useGetCharactersQuery } from "features/rick-and-morty-characters/api";
 import { useAppDispatch } from "hooks/redux-hooks";
 import { useUpdateQueryParams } from "hooks/use-update-query-params";
 import { useQueryParams } from "./use-query-params";
-import { setCharacters } from "store/table";
+import { setCharacters, setLastPage } from "store/table";
 
 type UseGetCharactersState = {
   isLoading: boolean;
@@ -19,11 +19,13 @@ export const useGetCharacters = (): UseGetCharactersState => {
 
   useEffect(() => {
     dispatch(setCharacters(data?.results));
+    dispatch(setLastPage(data?.info.pages ?? 0));
   }, [data, dispatch]);
 
   useEffect(() => {
     if (isError) {
       dispatch(setCharacters([]));
+      dispatch(setLastPage(0));
     }
   }, [isError, dispatch]);
 

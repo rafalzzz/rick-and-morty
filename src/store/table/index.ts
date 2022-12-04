@@ -8,11 +8,13 @@ import { TransformedResult } from "features/rick-and-morty-characters/types";
 interface TableState {
   selection: number[];
   characters: TransformedResult[];
+  lastPage: number;
 }
 
 const initialState: TableState = {
   selection: [],
   characters: [],
+  lastPage: 0,
 };
 
 export const tableSlice = createSlice({
@@ -31,13 +33,16 @@ export const tableSlice = createSlice({
     setCharacters: (state, action: PayloadAction<TransformedResult[] | undefined>) => {
       state.characters = action.payload ?? [];
     },
+    setLastPage: (state, action: PayloadAction<number>) => {
+      state.lastPage = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(PURGE, () => initialState);
   },
 });
 
-export const { setSelection, removeSelection, setCharacters, setAllSelections } =
+export const { setSelection, removeSelection, setCharacters, setAllSelections, setLastPage } =
   tableSlice.actions;
 
 export const tableState = (state: RootState) => state.table;
@@ -45,6 +50,7 @@ export const tableState = (state: RootState) => state.table;
 const persistConfig = {
   key: "table-persist",
   storage,
+  blacklist: ["characters", "lastPage"],
 };
 
 const tableReducer = persistReducer(persistConfig, tableSlice.reducer);
