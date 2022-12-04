@@ -6,8 +6,14 @@ import { QueryParams } from "../types";
 const OPTIONS = Object.values(Species);
 
 type UseQueryParamsState = {
-  updateSingleQueryParam: (key: QueryParamKeys, value: string) => void;
   queryParams: QueryParams;
+  updateSingleQueryParam: (key: QueryParamKeys, value: string) => void;
+  updateFewQueryParams: (
+    params: {
+      key: QueryParamKeys;
+      value: string;
+    }[]
+  ) => void;
 };
 
 export const useQueryParams = (): UseQueryParamsState => {
@@ -28,6 +34,17 @@ export const useQueryParams = (): UseQueryParamsState => {
     [searchParams, setSearchParams]
   );
 
+  const updateFewQueryParams = useCallback(
+    (params: { key: QueryParamKeys; value: string }[]) => {
+      params.forEach(({ key, value }) => {
+        searchParams.set(key, value);
+      });
+
+      setSearchParams(searchParams);
+    },
+    [searchParams, setSearchParams]
+  );
+
   const getSingleQueryParam = (key: QueryParamKeys) => searchParams.get(key);
 
   const speciesValue = getSingleQueryParam(QueryParamKeys.SPECIES);
@@ -40,7 +57,8 @@ export const useQueryParams = (): UseQueryParamsState => {
   const queryParams = useMemo(() => ({ name, species, page }), [name, page, species]);
 
   return {
-    updateSingleQueryParam,
     queryParams,
+    updateSingleQueryParam,
+    updateFewQueryParams,
   };
 };
