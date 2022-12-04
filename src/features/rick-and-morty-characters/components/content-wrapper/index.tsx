@@ -1,13 +1,11 @@
 import { Wrapper, Content } from "./index.styled";
 
-type ContentProps = {
+type ContentWrapperProps = {
   children: JSX.Element;
 };
 
-export const ContentWrapper = ({ children }: ContentProps) => {
-  return (
-    <Wrapper>
-      <Content>{children}</Content>
-    </Wrapper>
-  );
-};
+export const ContentWrapper = ({ children }: ContentWrapperProps) => (
+  <Wrapper>
+    <Content>{children}</Content>
+  </Wrapper>
+);

@@ -4,6 +4,4 @@ type HeaderProps = {
   title: string;
 };
 
-export const Header = ({ title }: HeaderProps) => {
-  return <Title>{title}</Title>;
-};
+export const Header = ({ title }: HeaderProps) => <Title>{title}</Title>;

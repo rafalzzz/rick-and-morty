@@ -3,13 +3,16 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { persistReducer, PURGE } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import type { RootState } from "store";
+import { TransformedResult } from "features/rick-and-morty-characters/types";
 
 interface TableState {
   selection: number[];
+  characters: TransformedResult[];
 }
 
 const initialState: TableState = {
   selection: [],
+  characters: [],
 };
 
 export const tableSlice = createSlice({
@@ -19,13 +22,23 @@ export const tableSlice = createSlice({
     setSelection: (state, action: PayloadAction<number>) => {
       state.selection = [...state.selection, action.payload];
     },
+    removeSelection: (state, action: PayloadAction<number>) => {
+      state.selection = state.selection.filter((id) => id !== action.payload);
+    },
+    setAllSelections: (state, action: PayloadAction<number[]>) => {
+      state.selection = action.payload;
+    },
+    setCharacters: (state, action: PayloadAction<TransformedResult[] | undefined>) => {
+      state.characters = action.payload ?? [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(PURGE, () => initialState);
   },
 });
 
-export const { setSelection } = tableSlice.actions;
+export const { setSelection, removeSelection, setCharacters, setAllSelections } =
+  tableSlice.actions;
 
 export const tableState = (state: RootState) => state.table;
 

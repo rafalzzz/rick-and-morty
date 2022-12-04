@@ -1,7 +1,8 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Form } from "react-bootstrap";
 import { CustomTooltip } from "../tooltip";
-import { useIsOverflow } from "features/rick-and-morty-characters/hooks/use-is-overflow";
+import { useIsOverflow } from "hooks/use-is-overflow";
+import { useRowSelection } from "features/rick-and-morty-characters/hooks/use-row-selection";
 import { getStatusIcon } from "features/rick-and-morty-characters/helpers/get-status-icon";
 import { Status } from "features/rick-and-morty-characters/enums";
 import { TransformedResult } from "features/rick-and-morty-characters/types";
@@ -25,10 +26,12 @@ export const TableRow = ({ character }: TableRowProps) => {
   const showNameTooltip = useIsOverflow<HTMLSpanElement>(nameTooltipRef);
   const showOriginTooltip = useIsOverflow<HTMLSpanElement>(originTooltipRef);
 
+  const { isSelected, onChange } = useRowSelection(character.id);
+
   return (
     <StyledRow isDead={character.status === Status.DEAD}>
       <td>
-        <Form.Check type={"checkbox"} />
+        <Form.Check type={"checkbox"} onChange={onChange} checked={isSelected} />
       </td>
       <td>
         <NameContainer>

@@ -1,28 +1,31 @@
 import { Form } from "react-bootstrap";
-import { useGetCharacters } from "features/rick-and-morty-characters/hooks/use-get-characters";
+import { tableState } from "store/table";
+import { useAppSelector } from "hooks/redux-hooks";
+import { useAllRowsSelection } from "features/rick-and-morty-characters/hooks/use-all-rows-selection";
 import { TableRow } from "../table-row";
 import { StyledTable } from "./index.styled";
 
 const COLUMNS = ["Name", "Avatar", "Origin", "Gender", "Status"];
 
 export const CharactersTable = () => {
-  const characters = useGetCharacters();
+  const { isSelected, onChange } = useAllRowsSelection();
+  const { characters } = useAppSelector(tableState);
 
   return (
     <StyledTable hover responsive>
       <thead>
         <tr>
           <th>
-            <Form.Check type={"checkbox"} />
+            <Form.Check type={"checkbox"} checked={isSelected} onChange={onChange} />
           </th>
           {COLUMNS.map((column) => (
-            <th>{column}</th>
+            <th key={column}>{column}</th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {characters?.results.map((character) => (
-          <TableRow character={character} />
+        {characters.map((character) => (
+          <TableRow key={character.id} character={character} />
         ))}
       </tbody>
     </StyledTable>

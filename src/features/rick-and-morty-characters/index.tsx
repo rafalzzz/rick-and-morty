@@ -3,17 +3,23 @@ import React from "react";
 import { ContentWrapper } from "./components/content-wrapper";
 import { Header } from "./components/header";
 import { FiltersSection } from "./components/filters-section";
+import { Notification } from "./components/notification";
 import { CharactersTable } from "./components/characters-table";
+import { useGetCharacters } from "./hooks/use-get-characters";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const RickAndMortyCharacters = () => {
+  const { isLoading, isError } = useGetCharacters();
+
   return (
     <ContentWrapper>
       <>
         <Header title={"Characters"} />
         <FiltersSection />
-        <CharactersTable />
+        {isLoading && <Notification text="Loading ..." />}
+        {isError && <Notification text="Characters not found." />}
+        {!isLoading && !isError && <CharactersTable />}
       </>
     </ContentWrapper>
   );

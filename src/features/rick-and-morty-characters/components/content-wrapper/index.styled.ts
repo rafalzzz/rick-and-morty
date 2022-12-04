@@ -9,9 +9,9 @@ export const Wrapper = styled.div`
 `;
 
 export const Content = styled.main`
-  display: flex;
+  display: block;
   flex-direction: column;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1300px;
   min-width: 800px;
 `;

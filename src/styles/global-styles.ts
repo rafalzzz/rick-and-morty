@@ -8,6 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   display: block;
+  min-height: 100vh;
   height: auto;
   padding: 20px;
   background-color: #F5F8FD;

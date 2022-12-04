@@ -4,7 +4,7 @@ import { QueryParamKeys } from "features/rick-and-morty-characters/enums";
 import { ReactComponent as Loupe } from "assets/svg/loupe.svg";
 import * as Styled from "./index.styled";
 
-export const Search = () => {
+export const SearchInput = () => {
   const { queryParams, updateSingleQueryParam } = useQueryParams();
   const [basic, setInputValue] = useState(queryParams[QueryParamKeys.NAME]);
   const ref = useRef<HTMLInputElement | null>(null);
@@ -20,7 +20,7 @@ export const Search = () => {
       <Styled.Input
         ref={ref}
         onChange={({ target: { value } }: ChangeEvent<HTMLInputElement>) => setInputValue(value)}
-        value={basic}
+        value={basic ?? ""}
         type="text"
         className="shadow-none"
         placeholder="Search"

@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
-import { stringifyQueryParams } from "../helpers/stringify-query-params";
-import { QueryParams } from "../types";
+import { stringifyQueryParams } from "../features/rick-and-morty-characters/helpers/stringify-query-params";
+import { QueryParams } from "../features/rick-and-morty-characters/types";
 
-type UseCheckQueryParamsProps = {
+type UseUpdateQueryParamsProps = {
   correctQueryParams: QueryParams;
 };
 
-export const useUpdateQueryParams = ({ correctQueryParams }: UseCheckQueryParamsProps) => {
+export const useUpdateQueryParams = ({ correctQueryParams }: UseUpdateQueryParamsProps) => {
   const [, setSearchParams] = useSearchParams();
   const prevQueryParams = useRef("");
 

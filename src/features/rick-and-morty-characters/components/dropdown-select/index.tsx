@@ -17,7 +17,11 @@ export const DropdownSelect = () => {
     <Select className="shadow-none" value={queryParams[QueryParamKeys.SPECIES]} onChange={onChange}>
       {OPTIONS.map((option) => {
         const label = option ? capitalizeFirstLetter(option) : "Species";
-        return <option value={option}>{label}</option>;
+        return (
+          <option key={option} value={option}>
+            {label}
+          </option>
+        );
       })}
     </Select>
   );

@@ -6,10 +6,6 @@ export const useIsOverflow = <T extends HTMLElement = HTMLElement>(
   const [isOverflow, setIsOverflow] = useState(false);
 
   const resizeHandler = useCallback(() => {
-    if (!ref) {
-      return;
-    }
-
     const { current } = ref;
 
     if (current) {
