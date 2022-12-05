@@ -14,11 +14,14 @@ export const SearchInput = () => {
 
   const onSubmit = (event: FormEvent) => {
     event.preventDefault();
-    updateFewQueryParams([
-      { key: QueryParamKeys.NAME, value: basic ?? "" },
-      { key: QueryParamKeys.PAGE, value: "1" },
-    ]);
-    ref.current?.blur();
+
+    if (!isLoading) {
+      updateFewQueryParams([
+        { key: QueryParamKeys.NAME, value: basic ?? "" },
+        { key: QueryParamKeys.PAGE, value: "1" },
+      ]);
+      ref.current?.blur();
+    }
   };
 
   return (
@@ -32,7 +35,7 @@ export const SearchInput = () => {
         className="shadow-none"
         placeholder="Search"
       />
-      <Styled.SubmitButton disabled={isLoading} type="submit">
+      <Styled.SubmitButton type="submit">
         <Loupe />
       </Styled.SubmitButton>
     </Styled.SearchForm>
