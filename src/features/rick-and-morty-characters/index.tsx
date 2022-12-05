@@ -1,4 +1,4 @@
-import { tableState } from "store/table";
+import { rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 import { useAppSelector } from "hooks/redux-hooks";
 import { useGetCharacters } from "./hooks/use-get-characters";
 import { ContentWrapper } from "./components/content-wrapper";
@@ -11,8 +11,8 @@ import { TablePagination } from "./components/table-pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const RickAndMortyCharacters = () => {
-  const { isLoading, isError } = useGetCharacters();
-  const { characters } = useAppSelector(tableState);
+  const { isError } = useGetCharacters();
+  const { isLoading, characters, lastPage } = useAppSelector(rickAndMortyCharactersState);
 
   return (
     <ContentWrapper>
@@ -22,7 +22,7 @@ export const RickAndMortyCharacters = () => {
         {isLoading && !characters.length && <Notification text="Loading ..." />}
         {isError && <Notification text="Characters not found." />}
         {!!characters.length && <CharactersTable />}
-        {!!characters.length && <TablePagination />}
+        {lastPage > 1 && <TablePagination />}
       </>
     </ContentWrapper>
   );

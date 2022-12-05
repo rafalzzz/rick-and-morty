@@ -1,11 +1,28 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Table } from "react-bootstrap";
 
-export const StyledTable = styled(Table)`
+const loadingAnimation = keyframes`
+  0%
+  {
+    opacity: 1;
+  }
+  50%
+  {
+    opacity: 0.4;
+  }
+  100%
+  {
+    opacity: 1;
+  }
+`;
+
+export const StyledTable = styled(Table)<{ isLoading: boolean }>`
   background-color: #fff;
   -webkit-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
   -moz-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
   box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
+  animation: ${({ isLoading }) => (isLoading ? `${loadingAnimation} 2s linear infinite` : "none")};
+  pointer-events: ${({ isLoading }) => (isLoading ? "none" : "auto")};
 
   th:first-child,
   td:first-child {

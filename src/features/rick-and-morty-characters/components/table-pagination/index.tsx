@@ -1,4 +1,4 @@
-import { tableState } from "store/table";
+import { rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 import { useAppSelector } from "hooks/redux-hooks";
 import { useQueryParams } from "features/rick-and-morty-characters/hooks/use-query-params";
 import { usePaginationButtons } from "features/rick-and-morty-characters/hooks/use-pagination-buttons";
@@ -10,7 +10,7 @@ import { PaginationContainer, ButtonsContainer } from "./index.styled";
 import { TablePaginationMiddleSection } from "../table-pagination-middle-section";
 
 export const TablePagination = () => {
-  const { lastPage } = useAppSelector(tableState);
+  const { isLoading, lastPage } = useAppSelector(rickAndMortyCharactersState);
   const { queryParams, updateSingleQueryParam } = useQueryParams();
   const buttons = usePaginationButtons(lastPage);
 
@@ -20,7 +20,7 @@ export const TablePagination = () => {
     <PaginationContainer>
       <ButtonsContainer>
         <TablePaginationItem
-          disabled={currentPage === 1}
+          disabled={currentPage === 1 || isLoading}
           onClick={() => updateSingleQueryParam(QueryParamKeys.PAGE, String(currentPage - 1))}
         >
           <PrevPage />
@@ -28,31 +28,25 @@ export const TablePagination = () => {
         {buttons.firstArray.map((key) => (
           <TablePaginationItem
             key={key}
-            disabled={currentPage === key}
+            disabled={currentPage === key || isLoading}
             onClick={() => updateSingleQueryParam(QueryParamKeys.PAGE, String(key))}
           >
             <>{key}</>
           </TablePaginationItem>
         ))}
-        {lastPage > 10 && (
-          <TablePaginationMiddleSection
-            currentPage={currentPage}
-            lastPage={lastPage}
-            updateSingleQueryParam={updateSingleQueryParam}
-          />
-        )}
+        {lastPage > 10 && <TablePaginationMiddleSection />}
 
         {buttons.secondArray.map((key) => (
           <TablePaginationItem
             key={key}
-            disabled={currentPage === key}
+            disabled={currentPage === key || isLoading}
             onClick={() => updateSingleQueryParam(QueryParamKeys.PAGE, String(key))}
           >
             <>{key}</>
           </TablePaginationItem>
         ))}
         <TablePaginationItem
-          disabled={currentPage === lastPage}
+          disabled={currentPage === lastPage || isLoading}
           onClick={() => updateSingleQueryParam(QueryParamKeys.PAGE, String(currentPage + 1))}
         >
           <NextPage />
