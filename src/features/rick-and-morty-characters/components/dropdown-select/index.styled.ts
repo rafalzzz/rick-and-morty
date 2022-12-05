@@ -13,4 +13,8 @@ export const Select = styled(Form.Select)`
   :focus {
     border: ${(props) => props.theme.border.basic};
   }
+
+  :disabled {
+    background-color: #fff;
+  }
 `;

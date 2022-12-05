@@ -1,10 +1,10 @@
 import { configureStore, ThunkAction, Action, combineReducers } from "@reduxjs/toolkit";
 import { FLUSH, PAUSE, PERSIST, persistStore, PURGE, REGISTER, REHYDRATE } from "redux-persist";
-import tableReducer from "store/table";
+import rickAndMortyCharactersReducer from "store/rick-and-morty-characters";
 import { rickAndMortyApi } from "features/rick-and-morty-characters/api";
 
 const rootReducer = combineReducers({
-  table: tableReducer,
+  rickAndMortyCharacters: rickAndMortyCharactersReducer,
   [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
 });
 

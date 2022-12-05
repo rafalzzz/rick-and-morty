@@ -5,20 +5,22 @@ import storage from "redux-persist/lib/storage";
 import type { RootState } from "store";
 import { TransformedResult } from "features/rick-and-morty-characters/types";
 
-interface TableState {
+type RickAndMortyState = {
   selection: number[];
+  isLoading: boolean;
   characters: TransformedResult[];
   lastPage: number;
-}
+};
 
-const initialState: TableState = {
+const initialState: RickAndMortyState = {
   selection: [],
+  isLoading: false,
   characters: [],
   lastPage: 0,
 };
 
-export const tableSlice = createSlice({
-  name: "table",
+export const rickAndMortyCharacters = createSlice({
+  name: "rick-and-morty-characters",
   initialState,
   reducers: {
     setSelection: (state, action: PayloadAction<number>) => {
@@ -29,6 +31,9 @@ export const tableSlice = createSlice({
     },
     setAllSelections: (state, action: PayloadAction<number[]>) => {
       state.selection = action.payload;
+    },
+    setIsLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
     setCharacters: (state, action: PayloadAction<TransformedResult[] | undefined>) => {
       state.characters = action.payload ?? [];
@@ -42,17 +47,23 @@ export const tableSlice = createSlice({
   },
 });
 
-export const { setSelection, removeSelection, setCharacters, setAllSelections, setLastPage } =
-  tableSlice.actions;
+export const {
+  setSelection,
+  removeSelection,
+  setAllSelections,
+  setIsLoading,
+  setCharacters,
+  setLastPage,
+} = rickAndMortyCharacters.actions;
 
-export const tableState = (state: RootState) => state.table;
+export const rickAndMortyCharactersState = (state: RootState) => state.rickAndMortyCharacters;
 
 const persistConfig = {
-  key: "table-persist",
+  key: "rick-and-morty-characters",
   storage,
   blacklist: ["characters", "lastPage"],
 };
 
-const tableReducer = persistReducer(persistConfig, tableSlice.reducer);
+const rickAndMortyCharactersReducer = persistReducer(persistConfig, rickAndMortyCharacters.reducer);
 
-export default tableReducer;
+export default rickAndMortyCharactersReducer;

@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "hooks/redux-hooks";
-import { setAllSelections, tableState } from "store/table";
+import { setAllSelections, rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 
 type UseAllRowsSelectionState = {
   isSelected: boolean;
@@ -9,7 +9,7 @@ type UseAllRowsSelectionState = {
 
 export const useAllRowsSelection = (): UseAllRowsSelectionState => {
   const dispatch = useAppDispatch();
-  const { selection, characters } = useAppSelector(tableState);
+  const { selection, characters } = useAppSelector(rickAndMortyCharactersState);
 
   const charactersIds = characters.map(({ id }) => id);
   const isSelected = charactersIds.every((id) => selection.includes(id));

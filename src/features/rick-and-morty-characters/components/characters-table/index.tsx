@@ -1,5 +1,5 @@
 import { Form } from "react-bootstrap";
-import { tableState } from "store/table";
+import { rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 import { useAppSelector } from "hooks/redux-hooks";
 import { useAllRowsSelection } from "features/rick-and-morty-characters/hooks/use-all-rows-selection";
 import { TableRow } from "../table-row";
@@ -9,11 +9,11 @@ const COLUMNS = ["Name", "Avatar", "Origin", "Gender", "Status"];
 
 export const CharactersTable = () => {
   const { isSelected, onChange } = useAllRowsSelection();
-  const { characters } = useAppSelector(tableState);
+  const { isLoading, characters } = useAppSelector(rickAndMortyCharactersState);
 
   return (
-    <StyledTable hover>
-      <thead>
+    <StyledTable isLoading={isLoading} hover>
+      <thead className={isLoading ? "loading-animation" : ""}>
         <tr>
           <th>
             <Form.Check type={"checkbox"} checked={isSelected} onChange={onChange} />
@@ -23,7 +23,7 @@ export const CharactersTable = () => {
           ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className={isLoading ? "loading-animation" : ""}>
         {characters.map((character) => (
           <TableRow key={character.id} character={character} />
         ))}

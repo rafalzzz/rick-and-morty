@@ -1,20 +1,34 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Table } from "react-bootstrap";
 
-export const StyledTable = styled(Table)`
+const loadingAnimation = keyframes`
+  0%
+  {
+    opacity: 1;
+  }
+  50%
+  {
+    opacity: 0.4;
+  }
+  100%
+  {
+    opacity: 1;
+  }
+`;
+
+export const StyledTable = styled(Table).withConfig({
+  shouldForwardProp: (prop, defaultValidatorFn) => !["isLoading"].includes(prop),
+})<{ isLoading: boolean }>`
   background-color: #fff;
   -webkit-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
   -moz-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
   box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
+  pointer-events: ${({ isLoading }) => (isLoading ? "none" : "auto")};
 
   th:first-child,
   td:first-child {
     width: 20px;
     padding: 12px 24px;
-  }
-
-  thead {
-    border-bottom: 1px solid #cbd4e2;
   }
 
   th,
@@ -36,5 +50,9 @@ export const StyledTable = styled(Table)`
   .form-check-input {
     width: 18px;
     height: 18px;
+  }
+
+  .loading-animation {
+    animation: ${loadingAnimation} 2s linear infinite;
   }
 `;
