@@ -9,23 +9,23 @@ export const PaginationItem = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${(props) => props.theme.backgroundColor.white};
-    border: ${(props) => props.theme.border.basic};
+    background-color: ${({ theme }) => theme.backgroundColor.white};
+    border: ${({ theme }) => theme.border.basic};
     border-radius: 5px;
-    color: ${(props) => props.theme.fontColors.secondary}
+    color: ${({ theme }) => theme.fontColors.secondary}
     font-size: 0.9rem;
-    -webkit-box-shadow: ${(props) => props.theme.shadows.paginationItem};
-    -moz-box-shadow: ${(props) => props.theme.shadows.paginationItem};
-    box-shadow: ${(props) => props.theme.shadows.paginationItem};
+    -webkit-box-shadow: ${({ theme }) => theme.shadows.paginationItem};
+    -moz-box-shadow: ${({ theme }) => theme.shadows.paginationItem};
+    box-shadow: ${({ theme }) => theme.shadows.paginationItem};
 
     :hover {
-      background-color: ${(props) => props.theme.backgroundColor.paginationItemHover};
+      background-color: ${({ theme }) => theme.backgroundColor.paginationItemHover};
       cursor: pointer;
     }
 
     :disabled {
-      color: ${(props) => props.theme.fontColors.secondary};
-      background-color: ${(props) => props.theme.backgroundColor.white};
+      color: ${({ theme }) => theme.fontColors.secondary};
+      background-color: ${({ theme }) => theme.backgroundColor.white};
       cursor: default;
       opacity: 0.5;
     }

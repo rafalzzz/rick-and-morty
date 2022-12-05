@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const StyledRow = styled.tr<{ isDead: boolean }>`
-  border-bottom: ${(props) => props.theme.border.tableRow};
-  background-color: ${(props) =>
-    props.isDead ? props.theme.backgroundColor.deadCharacter : props.theme.backgroundColor.white};
+  border-bottom: ${({ theme }) => theme.border.tableRow};
+  background-color: ${({ theme, isDead }) =>
+    isDead ? theme.backgroundColor.deadCharacter : theme.backgroundColor.white};
 `;
 
 export const NameContainer = styled.div`
@@ -11,13 +11,13 @@ export const NameContainer = styled.div`
 
   p:first-child {
     margin: 0px;
-    color: ${(props) => props.theme.fontColors.primary};
+    color: ${({ theme }) => theme.fontColors.primary};
     font-weight: 500;
   }
 
   p:nth-child(even) {
     margin: 0px;
-    color: ${(props) => props.theme.fontColors.secondary};
+    color: ${({ theme }) => theme.fontColors.secondary};
     font-weight: 400;
   }
 `;

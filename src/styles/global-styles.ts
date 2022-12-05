@@ -12,7 +12,7 @@ body {
   height: auto;
   padding: 20px;
   min-width: 900px;
-  background-color: ${(props) => props.theme.backgroundColor.bodyBackgroundColor};
+  background-color: ${({ theme }) => theme.backgroundColor.bodyBackgroundColor};
 }
 
 code {
