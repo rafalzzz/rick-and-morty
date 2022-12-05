@@ -9,23 +9,23 @@ export const PaginationItem = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    background-color: ${(props) => props.theme.backgroundColor.white};
     border: ${(props) => props.theme.border.basic};
     border-radius: 5px;
-    color: ${(props) => props.theme.fontColors.basic}
+    color: ${(props) => props.theme.fontColors.secondary}
     font-size: 0.9rem;
-    -webkit-box-shadow: 0px 2px 4px rgba(176, 194, 205, 0.3);
-    -moz-box-shadow: 0px 2px 4px rgba(176, 194, 205, 0.3);
-    box-shadow: 0px 2px 4px rgba(176, 194, 205, 0.3);
+    -webkit-box-shadow: ${(props) => props.theme.shadows.paginationItem};
+    -moz-box-shadow: ${(props) => props.theme.shadows.paginationItem};
+    box-shadow: ${(props) => props.theme.shadows.paginationItem};
 
     :hover {
-      background-color: #bac6d820;
+      background-color: ${(props) => props.theme.backgroundColor.paginationItemHover};
       cursor: pointer;
     }
 
     :disabled {
-      color: ${(props) => props.theme.fontColors.basic};
-      background-color: #fff;
+      color: ${(props) => props.theme.fontColors.secondary};
+      background-color: ${(props) => props.theme.backgroundColor.white};
       cursor: default;
       opacity: 0.5;
     }

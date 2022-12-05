@@ -10,13 +10,13 @@ export const NameContainer = styled.div`
 
   p:first-child {
     margin: 0px;
-    color: #1a2328;
+    color: ${(props) => props.theme.fontColors.primary};
     font-weight: 500;
   }
 
   p:nth-child(even) {
     margin: 0px;
-    color: ${(props) => props.theme.fontColors.basic};
+    color: ${(props) => props.theme.fontColors.secondary};
     font-weight: 400;
   }
 `;

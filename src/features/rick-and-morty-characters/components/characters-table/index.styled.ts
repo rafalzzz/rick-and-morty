@@ -19,10 +19,10 @@ const loadingAnimation = keyframes`
 export const StyledTable = styled(Table).withConfig({
   shouldForwardProp: (prop, defaultValidatorFn) => !["isLoading"].includes(prop),
 })<{ isLoading: boolean }>`
-  background-color: #fff;
-  -webkit-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
-  -moz-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
-  box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
+  background-color: ${(props) => props.theme.backgroundColor.white};
+  -webkit-box-shadow: ${(props) => props.theme.shadows.table};
+  -moz-box-shadow: ${(props) => props.theme.shadows.table};
+  box-shadow: ${(props) => props.theme.shadows.table};
   pointer-events: ${({ isLoading }) => (isLoading ? "none" : "auto")};
 
   th:first-child,
@@ -39,12 +39,12 @@ export const StyledTable = styled(Table).withConfig({
 
   th {
     font-size: 0.9rem;
-    color: #484f53;
+    color: ${(props) => props.theme.fontColors.secondary};
   }
 
   td {
     font-size: 1rem;
-    color: #1a2328;
+    color: ${(props) => props.theme.fontColors.primary};
   }
 
   .form-check-input {

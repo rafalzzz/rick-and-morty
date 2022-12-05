@@ -15,7 +15,7 @@ export const Input = styled(Form.Control)`
   font-size: 0.9rem;
   font-weight: 400;
   border: none;
-  color: ${(props) => props.theme.fontColors.basic};
+  color: ${(props) => props.theme.fontColors.secondary};
 
   ::placeholder,
   :-ms-input-placeholder,
@@ -24,11 +24,11 @@ export const Input = styled(Form.Control)`
   }
 
   :focus {
-    color: ${(props) => props.theme.fontColors.basic};
+    color: ${(props) => props.theme.fontColors.secondary};
   }
 
   :disabled {
-    background-color: #fff;
+    background-color: ${(props) => props.theme.backgroundColor.white};
   }
 `;
 
@@ -37,10 +37,10 @@ export const SubmitButton = styled(Button)<{ isLoading: boolean }>`
   align-items: center;
   justify-content: center;
   border: none;
-  background-color: #fff;
+  background-color: ${(props) => props.theme.backgroundColor.white};
   pointer-events: ${({ isLoading }) => (isLoading ? "none" : "auto")};
 
   :hover {
-    background-color: ${(props) => props.theme.colors.hoverBackgroundColor};
+    background-color: ${(props) => props.theme.backgroundColor.submitButtonHover};
   }
 `;

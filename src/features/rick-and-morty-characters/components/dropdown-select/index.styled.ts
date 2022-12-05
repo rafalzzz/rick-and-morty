@@ -8,13 +8,13 @@ export const Select = styled(Form.Select)`
   padding: 9px 11px;
   font-size: 0.9rem;
   font-weight: 400;
-  color: ${(props) => props.theme.fontColors.basic};
+  color: ${(props) => props.theme.fontColors.secondary};
 
   :focus {
     border: ${(props) => props.theme.border.basic};
   }
 
   :disabled {
-    background-color: #fff;
+    background-color: ${(props) => props.theme.backgroundColor.white};
   }
 `;

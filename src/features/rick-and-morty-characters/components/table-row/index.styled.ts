@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const StyledRow = styled.tr<{ isDead: boolean }>`
   border-bottom: 1px solid #e5eaf0;
-  background-color: ${({ isDead }) => (isDead ? "#F6F8FA" : "fff")};
+  background-color: ${(props) =>
+    props.isDead ? props.theme.backgroundColor.deadCharacter : props.theme.backgroundColor.white};
 `;
 
 export const NameContainer = styled.div`
@@ -10,13 +11,13 @@ export const NameContainer = styled.div`
 
   p:first-child {
     margin: 0px;
-    color: #1a2328;
+    color: ${(props) => props.theme.fontColors.primary};
     font-weight: 500;
   }
 
   p:nth-child(even) {
     margin: 0px;
-    color: ${(props) => props.theme.fontColors.basic};
+    color: ${(props) => props.theme.fontColors.secondary};
     font-weight: 400;
   }
 `;

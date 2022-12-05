@@ -6,14 +6,23 @@ declare module "styled-components" {
       basic: string;
     };
 
-    fontColors: {
-      title: string;
-      placeholder: string;
-      basic: string;
+    shadows: {
+      table: string;
+      paginationItem: string;
     };
 
-    colors: {
-      hoverBackgroundColor: string;
+    backgroundColor: {
+      bodyBackgroundColor: string;
+      white: string;
+      submitButtonHover: string;
+      paginationItemHover: string;
+      deadCharacter: string;
+    };
+
+    fontColors: {
+      primary: string;
+      secondary: string;
+      placeholder: string;
     };
   }
 }
