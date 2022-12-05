@@ -32,7 +32,7 @@ export const SearchInput = () => {
         className="shadow-none"
         placeholder="Search"
       />
-      <Styled.SubmitButton type="submit">
+      <Styled.SubmitButton disabled={isLoading} type="submit">
         <Loupe />
       </Styled.SubmitButton>
     </Styled.SearchForm>

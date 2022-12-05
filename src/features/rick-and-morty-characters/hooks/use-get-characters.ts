@@ -6,15 +6,15 @@ import { useQueryParams } from "./use-query-params";
 import { setCharacters, setLastPage } from "store/rick-and-morty-characters";
 
 type UseGetCharactersState = {
-  isLoading: boolean;
   isError: boolean;
+  error: unknown;
 };
 
 export const useGetCharacters = (): UseGetCharactersState => {
   const dispatch = useAppDispatch();
 
   const { queryParams } = useQueryParams();
-  const { data, isLoading, isFetching, isError } = useGetCharactersQuery(queryParams);
+  const { data, isError, error } = useGetCharactersQuery(queryParams);
   useUpdateQueryParams({ correctQueryParams: queryParams });
 
   useEffect(() => {
@@ -22,12 +22,5 @@ export const useGetCharacters = (): UseGetCharactersState => {
     dispatch(setLastPage(data?.info.pages ?? 0));
   }, [data, dispatch]);
 
-  useEffect(() => {
-    if (isError) {
-      dispatch(setCharacters([]));
-      dispatch(setLastPage(0));
-    }
-  }, [isError, dispatch]);
-
-  return { isLoading: isLoading || isFetching, isError };
+  return { isError, error };
 };

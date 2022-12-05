@@ -16,22 +16,19 @@ const loadingAnimation = keyframes`
   }
 `;
 
-export const StyledTable = styled(Table)<{ isLoading: boolean }>`
+export const StyledTable = styled(Table).withConfig({
+  shouldForwardProp: (prop, defaultValidatorFn) => !["isLoading"].includes(prop),
+})<{ isLoading: boolean }>`
   background-color: #fff;
   -webkit-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
   -moz-box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
   box-shadow: 2px 4px 24px -12px rgba(66, 68, 90, 1);
-  animation: ${({ isLoading }) => (isLoading ? `${loadingAnimation} 2s linear infinite` : "none")};
   pointer-events: ${({ isLoading }) => (isLoading ? "none" : "auto")};
 
   th:first-child,
   td:first-child {
     width: 20px;
     padding: 12px 24px;
-  }
-
-  thead {
-    border-bottom: 1px solid #cbd4e2;
   }
 
   th,
@@ -53,5 +50,9 @@ export const StyledTable = styled(Table)<{ isLoading: boolean }>`
   .form-check-input {
     width: 18px;
     height: 18px;
+  }
+
+  .loading-animation {
+    animation: ${loadingAnimation} 2s linear infinite;
   }
 `;

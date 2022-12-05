@@ -26,14 +26,19 @@ export const Input = styled(Form.Control)`
   :focus {
     color: ${(props) => props.theme.fontColors.basic};
   }
+
+  :disabled {
+    background-color: #fff;
+  }
 `;
 
-export const SubmitButton = styled(Button)`
+export const SubmitButton = styled(Button)<{ isLoading: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   border: none;
   background-color: #fff;
+  pointer-events: ${({ isLoading }) => (isLoading ? "none" : "auto")};
 
   :hover {
     background-color: ${(props) => props.theme.colors.hoverBackgroundColor};

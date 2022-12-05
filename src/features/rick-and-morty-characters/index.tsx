@@ -11,18 +11,22 @@ import { TablePagination } from "./components/table-pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const RickAndMortyCharacters = () => {
-  const { isError } = useGetCharacters();
+  const { isError, error } = useGetCharacters();
   const { isLoading, characters, lastPage } = useAppSelector(rickAndMortyCharactersState);
+  const isNotFoundError = (error as { status: number } | null)?.status === 404;
+  const errorText = isNotFoundError
+    ? "Characters not found."
+    : "Something went wrong, please try again.";
 
   return (
     <ContentWrapper>
       <>
         <Header title={"Characters"} />
         <FiltersSection />
-        {isLoading && !characters.length && <Notification text="Loading ..." />}
-        {isError && <Notification text="Characters not found." />}
-        {!!characters.length && <CharactersTable />}
-        {lastPage > 1 && <TablePagination />}
+        {!isError && isLoading && !characters.length && <Notification text="Loading ..." />}
+        {isError && <Notification text={errorText} />}
+        {!isError && !!characters.length && <CharactersTable />}
+        {!isError && lastPage > 1 && <TablePagination />}
       </>
     </ContentWrapper>
   );

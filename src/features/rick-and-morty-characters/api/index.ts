@@ -34,9 +34,9 @@ export const rickAndMortyApi = createApi({
         dispatch(setIsLoading(true));
         try {
           await queryFulfilled;
-          dispatch(setIsLoading(true));
+          dispatch(setIsLoading(false));
         } catch (err) {
-          dispatch(setIsLoading(true));
+          dispatch(setIsLoading(false));
         }
       },
       providesTags: (response) =>

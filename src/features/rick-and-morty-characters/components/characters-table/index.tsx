@@ -13,7 +13,7 @@ export const CharactersTable = () => {
 
   return (
     <StyledTable isLoading={isLoading} hover>
-      <thead>
+      <thead className={isLoading ? "loading-animation" : ""}>
         <tr>
           <th>
             <Form.Check type={"checkbox"} checked={isSelected} onChange={onChange} />
@@ -23,7 +23,7 @@ export const CharactersTable = () => {
           ))}
         </tr>
       </thead>
-      <tbody>
+      <tbody className={isLoading ? "loading-animation" : ""}>
         {characters.map((character) => (
           <TableRow key={character.id} character={character} />
         ))}

@@ -7,7 +7,7 @@ type TablePaginationItemProps = {
 };
 
 export const TablePaginationItem = ({ children, disabled, onClick }: TablePaginationItemProps) => (
-  <PaginationItem disabled={disabled}>
+  <PaginationItem>
     <button disabled={disabled} onClick={onClick}>
       {children}
     </button>

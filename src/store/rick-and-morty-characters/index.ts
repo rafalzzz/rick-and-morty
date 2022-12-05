@@ -5,14 +5,14 @@ import storage from "redux-persist/lib/storage";
 import type { RootState } from "store";
 import { TransformedResult } from "features/rick-and-morty-characters/types";
 
-interface rickAndMortyCharactersState {
+type RickAndMortyState = {
   selection: number[];
   isLoading: boolean;
   characters: TransformedResult[];
   lastPage: number;
-}
+};
 
-const initialState: rickAndMortyCharactersState = {
+const initialState: RickAndMortyState = {
   selection: [],
   isLoading: false,
   characters: [],
