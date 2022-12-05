@@ -1,6 +1,7 @@
 export const basic = {
   border: {
     basic: "1px solid #bac6d8",
+    tableRow: "1px solid #e5eaf0",
   },
 
   shadows: {

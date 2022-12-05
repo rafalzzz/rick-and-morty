@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledRow = styled.tr<{ isDead: boolean }>`
-  border-bottom: 1px solid #e5eaf0;
+  border-bottom: ${(props) => props.theme.border.tableRow};
   background-color: ${(props) =>
     props.isDead ? props.theme.backgroundColor.deadCharacter : props.theme.backgroundColor.white};
 `;

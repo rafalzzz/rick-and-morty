@@ -4,6 +4,7 @@ declare module "styled-components" {
   export interface DefaultTheme {
     border: {
       basic: string;
+      tableRow: string;
     };
 
     shadows: {
