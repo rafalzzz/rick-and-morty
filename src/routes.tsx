@@ -4,7 +4,7 @@ import { Header } from "features/rick-and-morty-characters/components/header";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/rick-and-morty",
     element: <RickAndMortyCharacters />,
     errorElement: <Header title={"Page not found"} />,
   },
