@@ -7,8 +7,8 @@ import { QueryParamKeys } from "../enums";
 type UsePaginationMiddleSectionState = {
   isLoading: boolean;
   currentPage: number;
+  lastPage: number;
   middleButtonsKeys: number[];
-  displayOnlyPaginationEllipsis: boolean;
   displayPaginationEllipsisBeforeButtons: boolean;
   displayPaginationEllipsisAfterButtons: boolean;
   updateSingleQueryParam: (key: QueryParamKeys, value: string) => void;
@@ -19,41 +19,24 @@ export const usePaginationMiddleSection = (): UsePaginationMiddleSectionState =>
   const { isLoading, lastPage } = useAppSelector(rickAndMortyCharactersState);
   const currentPage = Number(queryParams[QueryParamKeys.PAGE]);
 
-  const displayOnlyPaginationEllipsis = currentPage < 2 || currentPage > lastPage - 1;
-  const displayPaginationEllipsisBeforeButtons = currentPage > 6;
-  const displayPaginationEllipsisAfterButtons = currentPage < lastPage - 5;
+  const displayPaginationEllipsisBeforeButtons = currentPage > 7;
+  const displayPaginationEllipsisAfterButtons = currentPage < lastPage - 6;
 
   const middleButtonsKeys = useMemo(() => {
-    let keys = [];
+    let keys: number[] = [
+      currentPage - 2,
+      currentPage - 1,
+      currentPage,
+      currentPage + 1,
+      currentPage + 2,
+    ];
 
-    switch (currentPage) {
-      case 2:
-        keys = [4];
-        break;
-      case 3:
-        keys = [4, 5];
-        break;
-      case 4:
-        keys = [4, 5, 6];
-        break;
-      case 5:
-        keys = [4, 5, 6, 7];
-        break;
-      case lastPage - 1:
-        keys = [lastPage - 3];
-        break;
-      case lastPage - 2:
-        keys = [lastPage - 3, lastPage - 4];
-        break;
-      case lastPage - 3:
-        keys = [lastPage - 5, lastPage - 4, lastPage - 3];
-        break;
-      case lastPage - 4:
-        keys = [lastPage - 6, lastPage - 5, lastPage - 4, lastPage - 3];
-        break;
-      default:
-        keys = [currentPage - 2, currentPage - 1, currentPage, currentPage + 1, currentPage + 2];
-        break;
+    if (currentPage < 8) {
+      keys = [4, 5, 6, 7, 8, 9];
+    }
+
+    if (currentPage > lastPage - 7) {
+      keys = [lastPage - 8, lastPage - 7, lastPage - 6, lastPage - 5, lastPage - 4, lastPage - 3];
     }
 
     return keys;
@@ -62,8 +45,8 @@ export const usePaginationMiddleSection = (): UsePaginationMiddleSectionState =>
   return {
     isLoading,
     currentPage,
+    lastPage,
     middleButtonsKeys,
-    displayOnlyPaginationEllipsis,
     displayPaginationEllipsisBeforeButtons,
     displayPaginationEllipsisAfterButtons,
     updateSingleQueryParam,

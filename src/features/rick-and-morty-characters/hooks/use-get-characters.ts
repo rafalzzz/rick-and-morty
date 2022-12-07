@@ -10,7 +10,7 @@ type UseGetCharactersState = {
   error: unknown;
 };
 
-export const useGetCharacters = (): UseGetCharactersState => {
+export const useCharacters = (): UseGetCharactersState => {
   const dispatch = useAppDispatch();
 
   const { queryParams } = useQueryParams();
@@ -18,8 +18,10 @@ export const useGetCharacters = (): UseGetCharactersState => {
   useUpdateQueryParams({ correctQueryParams: queryParams });
 
   useEffect(() => {
-    dispatch(setCharacters(data?.results));
-    dispatch(setLastPage(data?.info.pages ?? 0));
+    if (data) {
+      dispatch(setCharacters(data.results));
+      dispatch(setLastPage(data.info.pages));
+    }
   }, [data, dispatch]);
 
   return { isError, error };

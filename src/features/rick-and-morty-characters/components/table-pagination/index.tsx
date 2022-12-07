@@ -1,7 +1,10 @@
 import { rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 import { useAppSelector } from "hooks/redux-hooks";
 import { useQueryParams } from "features/rick-and-morty-characters/hooks/use-query-params";
-import { usePaginationButtons } from "features/rick-and-morty-characters/hooks/use-pagination-buttons";
+import {
+  PAGINATION_BUTTONS_AMOUNT,
+  usePaginationButtons,
+} from "features/rick-and-morty-characters/hooks/use-pagination-buttons";
 import { TablePaginationItem } from "../table-pagination-item";
 import { QueryParamKeys } from "features/rick-and-morty-characters/enums";
 import { ReactComponent as PrevPage } from "assets/svg/prev-page.svg";
@@ -34,7 +37,7 @@ export const TablePagination = () => {
             <>{key}</>
           </TablePaginationItem>
         ))}
-        {lastPage > 10 && <TablePaginationMiddleSection />}
+        {lastPage > PAGINATION_BUTTONS_AMOUNT && <TablePaginationMiddleSection />}
 
         {buttons.secondArray.map((key) => (
           <TablePaginationItem

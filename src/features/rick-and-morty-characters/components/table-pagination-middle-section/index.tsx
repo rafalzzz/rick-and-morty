@@ -7,16 +7,12 @@ export const TablePaginationMiddleSection = () => {
   const {
     isLoading,
     currentPage,
+    lastPage,
     middleButtonsKeys,
-    displayOnlyPaginationEllipsis,
     displayPaginationEllipsisBeforeButtons,
     displayPaginationEllipsisAfterButtons,
     updateSingleQueryParam,
   } = usePaginationMiddleSection();
-
-  if (displayOnlyPaginationEllipsis) {
-    return <TablePaginationEllipsis />;
-  }
 
   return (
     <>

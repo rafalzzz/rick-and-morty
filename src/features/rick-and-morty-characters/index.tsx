@@ -1,6 +1,6 @@
 import { rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 import { useAppSelector } from "hooks/redux-hooks";
-import { useGetCharacters } from "./hooks/use-get-characters";
+import { useCharacters } from "./hooks/use-get-characters";
 import { ContentWrapper } from "./components/content-wrapper";
 import { Header } from "./components/header";
 import { FiltersSection } from "./components/filters-section";
@@ -11,7 +11,7 @@ import { TablePagination } from "./components/table-pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export const RickAndMortyCharacters = () => {
-  const { isError, error } = useGetCharacters();
+  const { isError, error } = useCharacters();
   const { isLoading, characters, lastPage } = useAppSelector(rickAndMortyCharactersState);
   const isNotFoundError = (error as { status: number } | null)?.status === 404;
   const errorText = isNotFoundError
