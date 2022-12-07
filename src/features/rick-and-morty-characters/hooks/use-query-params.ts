@@ -56,7 +56,14 @@ export const useQueryParams = (): UseQueryParamsState => {
   const species = OPTIONS.includes(speciesValue as Species) ? speciesValue : "";
 
   const pageValue = Number(getSingleQueryParam(QueryParamKeys.PAGE));
-  const isPageValid = !!pageValue && pageValue > 0 && pageValue <= lastPage;
+  const isPageValid = useMemo(() => {
+    if (!!lastPage) {
+      return !!pageValue && pageValue > 0 && pageValue <= lastPage;
+    }
+
+    return true;
+  }, [lastPage, pageValue]);
+
   const page = isPageValid ? String(pageValue) : "1";
 
   const isNameValid =
