@@ -3,7 +3,7 @@ import { baseQuery } from "./base-query";
 import { stringifyQueryParams } from "../helpers/stringify-query-params";
 import { QueryParams, Response, TransformedResponse } from "../types";
 import { Tags } from "../enums";
-import { setIsLoading } from "store/rick-and-morty-characters";
+import { setCharacters, setIsLoading, setLastPage } from "store/rick-and-morty-characters";
 
 export const rickAndMortyApi = createApi({
   reducerPath: "rick-and-morty",
@@ -37,6 +37,8 @@ export const rickAndMortyApi = createApi({
           dispatch(setIsLoading(false));
         } catch (err) {
           dispatch(setIsLoading(false));
+          dispatch(setCharacters([]));
+          dispatch(setLastPage(0));
         }
       },
       providesTags: (response) =>

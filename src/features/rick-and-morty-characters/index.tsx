@@ -1,6 +1,6 @@
 import { rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 import { useAppSelector } from "hooks/redux-hooks";
-import { useCharacters } from "./hooks/use-get-characters";
+import { useCharacters } from "./hooks/use-characters";
 import { ContentWrapper } from "./components/content-wrapper";
 import { Header } from "./components/header";
 import { FiltersSection } from "./components/filters-section";

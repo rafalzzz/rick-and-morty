@@ -19,7 +19,7 @@ export const SearchInput = () => {
     event.preventDefault();
 
     if (inputValue.length > MAX_CHARACTERS) {
-      toast.error("Allowed max 40 characters");
+      toast.error("Character name can contain max 40 characters");
       return;
     }
 
