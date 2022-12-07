@@ -1,7 +1,11 @@
 import { useCallback, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
+import { useAppSelector } from "hooks/redux-hooks";
+import { rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 import { QueryParamKeys, Species } from "../enums";
 import { QueryParams } from "../types";
+
+export const MAX_CHARACTERS = 40;
 
 const OPTIONS = Object.values(Species);
 
@@ -18,6 +22,7 @@ type UseQueryParamsState = {
 
 export const useQueryParams = (): UseQueryParamsState => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { lastPage } = useAppSelector(rickAndMortyCharactersState);
 
   const updateSingleQueryParam = useCallback(
     (key: QueryParamKeys, value: string) => {
@@ -48,11 +53,16 @@ export const useQueryParams = (): UseQueryParamsState => {
   const getSingleQueryParam = (key: QueryParamKeys) => searchParams.get(key);
 
   const speciesValue = getSingleQueryParam(QueryParamKeys.SPECIES);
-  const pageValue = getSingleQueryParam(QueryParamKeys.PAGE);
-
-  const name = getSingleQueryParam(QueryParamKeys.NAME);
   const species = OPTIONS.includes(speciesValue as Species) ? speciesValue : "";
-  const page = !pageValue || isNaN(Number(pageValue)) ? "1" : pageValue;
+
+  const pageValue = Number(getSingleQueryParam(QueryParamKeys.PAGE));
+  const isPageValid = !!pageValue && pageValue > 0 && pageValue <= lastPage;
+  const page = isPageValid ? String(pageValue) : "1";
+
+  const isNameValid =
+    typeof getSingleQueryParam(QueryParamKeys.NAME) === "string" &&
+    (getSingleQueryParam(QueryParamKeys.NAME) ?? "").length <= MAX_CHARACTERS;
+  const name = isNameValid ? getSingleQueryParam(QueryParamKeys.NAME) : null;
 
   const queryParams = useMemo(() => ({ name, species, page }), [name, page, species]);
 

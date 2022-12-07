@@ -1,6 +1,6 @@
 import { ChangeEvent } from "react";
-import { rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 import { useAppSelector } from "hooks/redux-hooks";
+import { rickAndMortyCharactersState } from "store/rick-and-morty-characters";
 import { useQueryParams } from "features/rick-and-morty-characters/hooks/use-query-params";
 import { capitalizeFirstLetter } from "features/rick-and-morty-characters/helpers/capitalize-first-letter";
 import { Species, QueryParamKeys } from "features/rick-and-morty-characters/enums";

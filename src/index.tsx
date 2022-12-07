@@ -2,11 +2,14 @@ import React from "react";
 import { Provider } from "react-redux";
 import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "styled-components";
+import { ToastContainer } from "react-toastify";
 import { store } from "./store";
 import reportWebVitals from "./reportWebVitals";
 import { Routes } from "./routes";
 import { GlobalStyle } from "styles/global-styles";
 import { basic } from "styles/themes/basic";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -17,6 +20,7 @@ root.render(
       <ThemeProvider theme={basic}>
         <GlobalStyle />
         <Routes />
+        <ToastContainer />
       </ThemeProvider>
     </Provider>
   </React.StrictMode>
